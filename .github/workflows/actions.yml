@@ -1,10 +1,15 @@
-name: Node.js CI
+name: Deploy Bun site
 
 on:
   push:
     branches: [ "_" ]
   pull_request:
     branches: [ "_" ]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
 
 jobs:
   build:
