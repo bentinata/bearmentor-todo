@@ -9,6 +9,7 @@ function App() {
       status: "COMPLETED",
     },
   ]);
+  const [search, setSearch] = useState("");
 
   function addTask() {
     const newTask: Task = {
@@ -16,6 +17,10 @@ function App() {
       status: "CREATED",
     };
     setTasks((prevTasks) => [...prevTasks, newTask]);
+  }
+
+  function filterTask() {
+    return tasks.filter((task) => task.title.includes(search));
   }
 
   function deleteTask(deletedTitle: string) {
@@ -34,9 +39,13 @@ function App() {
 
   return (
     <>
+      <input
+        placeholder="Input task name"
+        onChange={(e) => setSearch(e.target.value)}
+      ></input>
       <button onClick={addTask}>Add task</button>
       <TaskList
-        tasks={tasks}
+        tasks={filterTask()}
         onDelete={deleteTask}
         onCompleted={completeTask}
       />
